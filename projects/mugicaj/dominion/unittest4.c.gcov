@@ -1,0 +1,74 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:3
+        -:    0:Programs:1
+        -:    0:Source is newer than graph
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include "rngs.h"
+        -:    8:
+        -:    9:
+function main called 3 returned 100% blocks executed 85%
+        3:   10:int main(int argc, char *argv[]){
+        -:   11:        int r;
+        -:   12:        int check;
+        3:   13:	int players = atoi(argv[1]);
+call    0 returned 100%
+        3:   14:        printf("supplyCount unit test ----\n");
+call    0 returned 100%
+        3:   15:        int k[10] = {adventurer, council_room, feast, gardens, mine,
+        -:   16:               remodel, smithy, village, baron, great_hall};
+        -:   17:
+        -:   18:        struct gameState G;
+        -:   19:
+        3:   20:         r = initializeGame(players, k, 1, &G);
+call    0 returned 100%
+        -:   21:
+        -:   22:        
+        3:   23:	int cop = supplyCount(copper,&G);
+call    0 returned 100%
+        3:   24:	int sil = supplyCount(silver,&G);
+call    0 returned 100%
+        3:   25:	int gol   = supplyCount(gold,&G);
+call    0 returned 100%
+        -:   26:
+        3:   27:        if(cop == 60 - (7*players)){
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        3:   28:                printf("PASS\n");
+call    0 returned 100%
+        3:   29:                return 0;
+        -:   30:        }
+        -:   31:	else{
+    #####:   32:		printf("FAIL\n");
+call    0 never executed
+    #####:   33:		return -1;	
+        -:   34:	}
+        -:   35:	
+        -:   36:	 if(sil == 40){
+        -:   37:                printf("PASS\n");
+        -:   38:                return 0;
+        -:   39:        }
+        -:   40:        else{
+        -:   41:                printf("FAIL\n");
+        -:   42:                return -1;
+        -:   43:        }
+        -:   44:	
+        -:   45:	 if(gol  == 30 ){
+        -:   46:                printf("PASS\n");
+        -:   47:                return 0;
+        -:   48:        }
+        -:   49:        else{
+        -:   50:                printf("FAIL\n");
+        -:   51:                return -1;
+        -:   52:        }
+        -:   53:
+        -:   54:
+        -:   55:
+        -:   56:        return 0;
+        -:   57:}

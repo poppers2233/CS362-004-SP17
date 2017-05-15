@@ -1,0 +1,65 @@
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:
+        -:    8:
+        -:    9:
+function main called 2 returned 100% blocks executed 88%
+        2:   10:int main(){
+        -:   11:
+        -:   12:	int r;
+        -:   13:        int check;
+        2:   14:	int count=0;
+        2:   15:        printf("smithy unit test ----\n");
+call    0 returned 100%
+        2:   16:        int k[10] = {adventurer, council_room, feast, gardens, mine,
+        -:   17:               remodel, smithy, village, baron, great_hall};
+        -:   18:
+        -:   19:        struct gameState G;
+        -:   20:
+        2:   21:         r = initializeGame(2, k, 1, &G);
+call    0 returned 100%
+        -:   22:	
+        2:   23:	check = cardEffect(smithy,0,0,0,&G,0,0);
+call    0 returned 100%
+        -:   24:	// one card discarded 3 added
+        -:   25:	int i;
+       22:   26:	for(i=0;i<10; i++){
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+       20:   27:		printf("%i\n",G.hand[0][i]);
+call    0 returned 100%
+       20:   28:		if(G.hand[0][i] > 0){
+branch  0 taken 70% (fallthrough)
+branch  1 taken 30%
+       14:   29:			count++;
+        -:   30:		}
+        -:   31:	
+        -:   32:	}
+        2:   33:	if(count == 7){
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   34:	
+        2:   35:		printf("PASS\n");
+call    0 returned 100%
+        2:   36:		return 0;
+        -:   37:		
+        -:   38:	}
+        -:   39:	
+        -:   40: 	else{
+    #####:   41:		printf("FAILED\n");
+call    0 never executed
+    #####:   42:		return -1;
+        -:   43:	}
+        -:   44:	
+        -:   45:	return 0;
+        -:   46:	 
+        -:   47:}
