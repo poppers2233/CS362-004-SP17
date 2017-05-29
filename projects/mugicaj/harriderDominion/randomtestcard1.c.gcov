@@ -1,0 +1,93 @@
+        -:    0:Source:randomtestcard1.c
+        -:    0:Graph:randomtestcard1.gcno
+        -:    0:Data:randomtestcard1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:#include <time.h>
+        -:    9:
+        -:   10:
+function main called 1 returned 100% blocks executed 81%
+        1:   11:int main(){
+        -:   12:
+        1:   13:        srand(time(NULL));
+call    0 returned 100%
+call    1 returned 100%
+        -:   14:
+        -:   15:
+        -:   16:        int r;
+        -:   17:        int check;
+        -:   18:
+        1:   19:        int RnumChecks = (rand() % 20) + 1;
+call    0 returned 100%
+        1:   20:        int count=0;
+        1:   21:	struct gameState states[RnumChecks];
+        1:   22:	printf("Random num checks = %i\n",RnumChecks);
+call    0 returned 100%
+        -:   23:
+        1:   24:        int allPass = 1;
+        1:   25:        printf("smithy random test ----\n");
+call    0 returned 100%
+        1:   26:        int k[10] = {adventurer, council_room, feast, gardens, mine,
+        -:   27:               remodel, smithy, village, baron, great_hall};
+        -:   28:
+        -:   29:        struct gameState G;
+        -:   30:
+        -:   31:        //check = cardEffect(smithy,0,0,0,&G,0,0);
+        -:   32:         //one card discarded 3 added
+        -:   33:
+        -:   34:        int i;
+        -:   35:	int a;
+       18:   36:        for(a=0; a<RnumChecks; a++){
+branch  0 taken 94%
+branch  1 taken 6% (fallthrough)
+       17:   37:		count=0;
+       17:   38:	r = initializeGame(2, k, 1, &states[a]);
+call    0 returned 100%
+       17:   39:	check = cardEffect(smithy,0,0,0,&states[a],0,0);
+call    0 returned 100%
+      187:   40:        for(i=0;i<10; i++){
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+        -:   41:                //printf("%i\n",states[a].hand[0][i]);
+      170:   42:                if(states[a].hand[0][i] > 0){
+branch  0 taken 70% (fallthrough)
+branch  1 taken 30%
+      119:   43:                        count++;
+        -:   44:                }
+        -:   45:
+        -:   46:        }
+       17:   47:        if(count == 7){
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   48:
+       17:   49:                printf("PASS\n");
+call    0 returned 100%
+        -:   50:
+        -:   51:        }
+        -:   52:
+        -:   53:        else{
+    #####:   54:                printf("FAILED\n");
+call    0 never executed
+    #####:   55:                allPass = 0;
+        -:   56:     	}
+        -:   57:        }
+        1:   58:        if(allPass == 1)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   59:                return 0;
+        -:   60:
+    #####:   61:        if(allPass == 0)
+branch  0 never executed
+branch  1 never executed
+    #####:   62:                return -1;
+        -:   63:	
+    #####:   64:	return -1;
+        -:   65:}
+        -:   66:
